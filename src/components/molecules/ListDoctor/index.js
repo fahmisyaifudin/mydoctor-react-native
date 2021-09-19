@@ -1,15 +1,17 @@
 import React from 'react';
 import {Image, StyleSheet, Text, View} from 'react-native';
-import {DummyUser} from '../../../assets';
+import {DummyDoctor2} from '../../../assets';
 import {colors, fonts} from '../../../utils';
 
-export default function HomeProfile() {
+export default function ListDoctor() {
   return (
     <View style={styles.container}>
-      <Image source={DummyUser} style={styles.avatar} />
+      <Image source={DummyDoctor2} style={styles.avatar} />
       <View>
-        <Text style={styles.name}>Shayna Melinda</Text>
-        <Text>Product Designer</Text>
+        <Text style={styles.name}>Alexander Jannie</Text>
+        <Text style={styles.desc}>
+          Baik ibu, terimakasih banyak atas wakt...
+        </Text>
       </View>
     </View>
   );
@@ -18,6 +20,10 @@ export default function HomeProfile() {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
+    padding: 16,
+    borderBottomWidth: 1,
+    borderBottomColor: colors.border,
+    alignItems: 'center',
   },
   avatar: {
     width: 46,
@@ -27,12 +33,12 @@ const styles = StyleSheet.create({
   },
   name: {
     fontSize: 16,
-    fontFamily: fonts.primary[600],
+    fontFamily: fonts.primary.normal,
     color: colors.text.primary,
   },
-  profession: {
+  desc: {
     fontSize: 12,
-    fontFamily: fonts.primary[400],
+    fontFamily: fonts.primary[300],
     color: colors.text.secondary,
   },
 });
