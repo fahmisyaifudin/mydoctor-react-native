@@ -12,6 +12,8 @@ import {
   Hospitals,
 } from '../pages';
 import {BottomNavigation} from '../components/molecules';
+import ChooseDoctor from '../pages/ChooseDoctor';
+import Chatting from '../pages/Chatting';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -69,6 +71,16 @@ export default function Route() {
       <Stack.Screen
         name="MainApp"
         component={MainApp}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="ChooseDoctor"
+        component={ChooseDoctor}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="Chatting"
+        component={Chatting}
         options={{headerShown: false}}
       />
     </Stack.Navigator>
