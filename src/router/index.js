@@ -10,10 +10,13 @@ import {
   Doctor,
   Messages,
   Hospitals,
+  UpdateProfile,
+  DoctorProfile,
 } from '../pages';
 import {BottomNavigation} from '../components/molecules';
 import ChooseDoctor from '../pages/ChooseDoctor';
 import Chatting from '../pages/Chatting';
+import UserProfile from '../pages/UserProfile';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -42,7 +45,7 @@ const MainApp = () => {
 
 export default function Route() {
   return (
-    <Stack.Navigator initialRouteName="MainApp">
+    <Stack.Navigator initialRouteName="Splash">
       <Stack.Screen
         name="Splash"
         component={Splash}
@@ -81,6 +84,21 @@ export default function Route() {
       <Stack.Screen
         name="Chatting"
         component={Chatting}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="UserProfile"
+        component={UserProfile}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="UpdateProfile"
+        component={UpdateProfile}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="DoctorProfile"
+        component={DoctorProfile}
         options={{headerShown: false}}
       />
     </Stack.Navigator>
