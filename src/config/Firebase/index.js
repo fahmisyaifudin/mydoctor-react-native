@@ -7,6 +7,8 @@ import {initializeApp} from 'firebase/app';
 const firebaseConfig = {
   apiKey: 'AIzaSyCTob83t0DltfVGZLg_ieodMdNhbw8v0Kg',
   authDomain: 'bwa-doctor-silentium.firebaseapp.com',
+  databaseURL:
+    'https://bwa-doctor-silentium-default-rtdb.asia-southeast1.firebasedatabase.app',
   projectId: 'bwa-doctor-silentium',
   storageBucket: 'bwa-doctor-silentium.appspot.com',
   messagingSenderId: '15813581464',

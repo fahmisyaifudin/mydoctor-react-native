@@ -5,6 +5,9 @@ export const useForm = initialValue => {
   return [
     value,
     (type, params) => {
+      if (type === 'reset') {
+        return setValue(initialValue);
+      }
       return setValue({...value, [type]: params});
     },
   ];
