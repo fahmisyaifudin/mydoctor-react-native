@@ -45,6 +45,7 @@ export default function UploadPhoto({navigation, route}) {
       fullName,
       profession,
       email,
+      uid,
       photo: photoData,
     };
     updates['users/' + uid] = data;

@@ -1,14 +1,33 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
+import {ILNullPhoto} from '../../assets';
 import {Profile, Header, List, Gap} from '../../components';
-import {colors} from '../../utils';
+import {colors, getData} from '../../utils';
 
 export default function UserProfile({navigation}) {
+  const [profile, setProfile] = useState({
+    fullName: '',
+    profession: '',
+    photo: ILNullPhoto,
+  });
+  useEffect(() => {
+    getData('user').then(res => {
+      const data = res;
+      data.photo = {uri: res.photo};
+      setProfile(data);
+    });
+  }, []);
   return (
     <View style={styles.page}>
       <Header title="Profile" onPress={() => navigation.goBack()} />
       <Gap height={10} />
-      <Profile name="Shayna Melinda" desc="Product Designer" />
+      {profile.fullName.length > 0 && (
+        <Profile
+          name={profile.fullName}
+          desc={profile.profession}
+          photo={profile.photo}
+        />
+      )}
       <Gap height={14} />
       <List
         name="Edit Profile"
@@ -18,19 +37,19 @@ export default function UserProfile({navigation}) {
         onPress={() => navigation.navigate('UpdateProfile')}
       />
       <List
-        name="Edit Profile"
+        name="Languange"
         desc="Last update yesterday"
         type="next"
         icon="languange"
       />
       <List
-        name="Edit Profile"
+        name="Give Us Rate"
         desc="Last update yesterday"
         type="next"
         icon="rate"
       />
       <List
-        name="Edit Profile"
+        name="Help Center"
         desc="Last update yesterday"
         type="next"
         icon="help"
