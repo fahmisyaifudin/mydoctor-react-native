@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
+import {getDatabase, ref, child, get} from 'firebase/database';
 import {
   DoctorCategory,
   Gap,
@@ -17,6 +18,19 @@ import {
 } from '../../assets';
 
 export default function Doctor({navigation}) {
+  const [news, setNews] = useState([]);
+  useEffect(() => {
+    const dbRef = ref(getDatabase());
+    get(child(dbRef, 'news'))
+      .then(snapshot => {
+        if (snapshot.exists()) {
+          setNews(snapshot.val());
+        }
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }, []);
   return (
     <View style={styles.page}>
       <View style={styles.content}>
@@ -68,8 +82,16 @@ export default function Doctor({navigation}) {
             />
             <Text style={styles.sectionLabel}>Good News</Text>
           </View>
-          <NewsItem />
-          <NewsItem />
+          {news.map((value, id) => {
+            return (
+              <NewsItem
+                key={id}
+                title={value.title}
+                date={value.date}
+                photo={value.photo}
+              />
+            );
+          })}
           <Gap height={30} />
         </ScrollView>
       </View>

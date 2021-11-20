@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
+import {getAuth, signOut} from 'firebase/auth';
 import {ILNullPhoto} from '../../assets';
 import {Profile, Header, List, Gap} from '../../components';
 import {colors, getData} from '../../utils';
@@ -10,6 +11,12 @@ export default function UserProfile({navigation}) {
     profession: '',
     photo: ILNullPhoto,
   });
+  const actionLogOut = () => {
+    const auth = getAuth();
+    signOut(auth).then(() => {
+      navigation.replace('GetStarted');
+    });
+  };
   useEffect(() => {
     getData('user').then(res => {
       const data = res;
@@ -49,10 +56,11 @@ export default function UserProfile({navigation}) {
         icon="rate"
       />
       <List
-        name="Help Center"
+        name="Sign Out"
         desc="Last update yesterday"
         type="next"
         icon="help"
+        onPress={actionLogOut}
       />
     </View>
   );
